@@ -1,0 +1,25 @@
+class Solution {
+public:
+    void solve(vector<int> nums,vector<vector<int>>& res,int idx)
+    {
+        if(idx==nums.size())
+        {
+            res.push_back(nums);
+            return;
+        }
+        for(int j=idx;j<nums.size();j++)
+        {
+            swap(nums[j],nums[idx]);
+             solve(nums,res,idx+1);
+             swap(nums[j],nums[idx]);
+        }
+        return;
+    }
+    vector<vector<int>> permute(vector<int>& nums) {
+        vector<vector<int>> res;
+        int idx=0;
+        solve(nums,res,idx);
+        return res;
+        
+    }
+};

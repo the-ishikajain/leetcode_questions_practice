@@ -1,0 +1,35 @@
+class Solution {
+public:
+    void solve(vector<int>& candidates, set<vector<int>>& st,vector<int> output,int t,int i,int x)
+    {
+        if(t==x)
+        {
+            st.insert(output);
+            return;
+        }
+        while(i<candidates.size() && x+candidates[i]<=t)
+        {
+        output.push_back(candidates[i]);
+        solve(candidates,st,output,t,i,x+candidates[i]);
+            i++;
+        output.pop_back();
+        }
+    }
+    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+        vector<vector<int>> res;
+        vector<int> output;
+        set<vector<int>> st;
+        sort(candidates.begin(),candidates.end());
+        solve(candidates,st,output,target,0,0);
+        for(auto it : st)
+        {
+            vector<int> res1;
+            for(auto j: it)
+            {
+                res1.push_back(j);
+            }
+            res.push_back(res1);
+        }
+        return res;
+    }
+};
