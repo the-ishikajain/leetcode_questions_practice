@@ -1,0 +1,23 @@
+class Solution {
+public:
+    bool searchMatrix(vector<vector<int>>& m, int target) {
+        for(int i=0;i<m.size();i++)
+        {
+            if(m[i][m[i].size()-1]>=target)
+            {
+            for(int j=0;j<m[0].size();j++)
+            {
+                if(m[i][j]==target)
+                {
+                    return true;
+                }
+                if(m[i][j]>target)
+                {
+                    break;
+                }
+            }
+            }
+        }
+        return false;
+    }
+};
